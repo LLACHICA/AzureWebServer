@@ -88,8 +88,8 @@ resource "azurerm_linux_virtual_machine" "nginx" {
    
 }
 
-resource "azurerm_mysql_server" "mysqlserver" {
-  name                = "mysqlserver"
+resource "azurerm_mysql_server" "mysqlDBserver" {
+  name                = "webserver-mysqlserver"
   location            = azurerm_resource_group.webserver.location
   resource_group_name = azurerm_resource_group.webserver.name
 
@@ -110,9 +110,11 @@ resource "azurerm_mysql_server" "mysqlserver" {
 }
 
 resource "azurerm_mysql_database" "mysqlDB" {
-  name                = "mysqlDB"
+  name                = "webserver-mysqldb"
   resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mysql_server.mysqlserver.name
+  server_name         = azurerm_mysql_server.mysqlDBserver.name
+
+
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
 }
