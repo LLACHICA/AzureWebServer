@@ -1,50 +1,90 @@
-module "network" {
-   source = "Azure/vnet/azurerm"
-   version = "3.1.0"
-   resource_group_name = azurerm_resource_group.webserver.name
-   address_space = ["10.0.0.0/16"]
-   subnet_prefixes = ["10.0.1.0/24", "10.0.2.0/24"]
-   subnet_names = ["subnet1", "subnet2"]
-   vnet_location       = "Canada Central"
-   vnet_name            ="nginx_vnet"
-
-   nsg_ids = {
-       subnet1 = azurerm_network_security_group.allowedports.id
-   }
-
-   tags = {
-       title = var.project
-       owner = var.owner
-   }
-
-   depends_on = [azurerm_resource_group.webserver]
+# Create virtual network
+resource "azurerm_virtual_network" "webserver_vnet" {
+name = "nginx_vnet"
+location = var.location
+resource_group_name = azurerm_resource_group.webserver.name
+address_space = ["10.0.0.0/16"]
 }
 
+# Create subnet
+resource "azurerm_subnet" "webserver_subnet" {
+  name                 = "SubnetInt"
+  resource_group_name = azurerm_resource_group.webserver.name
+  virtual_network_name = azurerm_virtual_network.webserver_vnet.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+# Create public IPs
 resource "azurerm_public_ip" "webserver_public_ip" {
-   name = "webserver_public_ip"
-   location = var.location
-   resource_group_name = azurerm_resource_group.webserver.name
-   allocation_method = "Dynamic"
+  name                = "PublicIP"
+  location = var.location
+  resource_group_name = azurerm_resource_group.webserver.name
+  allocation_method   = "Dynamic"
 
-   tags = {
-       title = var.project
-       owner = var.owner
-   }
+  tags = {
+    title = var.project
+    owner = var.owner
+  }
 
-   depends_on = [azurerm_resource_group.webserver]
 }
 
-resource "azurerm_network_interface" "webserver" {
-   name = "nginx-interface"
-   location = azurerm_resource_group.webserver.location
-   resource_group_name = azurerm_resource_group.webserver.name
+# Create network interface
+resource "azurerm_network_interface" "webserver_NIC" {
+  name                = "webserver-nic"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.webserver.name
 
-   ip_configuration {
-       name = "internal"
-       private_ip_address_allocation = "Dynamic"
-       subnet_id = module.network.vnet_subnets[0]
-       public_ip_address_id = azurerm_public_ip.webserver_public_ip.id
+  ip_configuration {
+    name                       = "internal"
+    subnet_id                  = azurerm_subnet.webserver_subnet.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.webserver_public_ip.id
+  }
+
+  tags = {
+    title = var.project
+    owner = var.owner
+  }
+  depends_on = [azurerm_virtual_network.webserver_vnet]
+}
+
+resource "azurerm_network_security_group" "allowedports" {
+   name = "allowedports"
+   resource_group_name = azurerm_resource_group.webserver.name
+   location = azurerm_resource_group.webserver.location
+  
+   security_rule {
+       name = "http"
+       priority = 100
+       direction = "Inbound"
+       access = "Allow"
+       protocol = "Tcp"
+       source_port_range = "*"
+       destination_port_range = "80"
+       source_address_prefix = "*"
+       destination_address_prefix = "*"
    }
 
-   depends_on = [azurerm_resource_group.webserver]
+   security_rule {
+       name = "https"
+       priority = 200
+       direction = "Inbound"
+       access = "Allow"
+       protocol = "Tcp"
+       source_port_range = "*"
+       destination_port_range = "443"
+       source_address_prefix = "*"
+       destination_address_prefix = "*"
+   }
+
+   security_rule {
+       name = "ssh"
+       priority = 300
+       direction = "Inbound"
+       access = "Allow"
+       protocol = "Tcp"
+       source_port_range = "*"
+       destination_port_range = "22"
+       source_address_prefix = "*"
+       destination_address_prefix = "*"
+   }
 }
