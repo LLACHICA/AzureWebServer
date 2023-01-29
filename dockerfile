@@ -3,8 +3,8 @@ FROM nginx:latest
 ARG IP_ADDRESS
 ENV IP_ADDRESS ${IP_ADDRESS}
 
-# Expose port 80 for incoming connections
-EXPOSE 80
+COPY /root/nginx-staging/AzureWebServer/scripts/my-web.conf /etc/nginx/nginx.template
 
-# Start Nginx as the default command when the container is run
-CMD ["nginx", "-g", "daemon off;"]
+RUN envsubst < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && \
+    rm /etc/nginx/nginx.template
+COPY /root/nginx-staging/AzureWebServer/html/*  /usr/share/nginx/html
