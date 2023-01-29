@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8"/>
+
+<title>The Gym</title>
+<meta name="viewport" content="width=divice-width, intial-scale=1.0"/>
+
+<link rel="stylesheet" type="text/css" href="common.css"/>
+
+<style type="text/css">
+.head{ margin-top:150px;
+       margin-bottom:100px;
+       text-color:#696969;
+	   
+	   }
+	   p  {
+    color:#000000;
+    font-family: courier;
+    font-size:20px;
+    center;
+      }
+      div.a {
+    text-align: center;
+
+</style>
+<script>
+function validateForm() {
+document.getElementById("first_name_err").innerHTML="";
+document.getElementById("last_name_err").innerHTML="";
+document.getElementById("customer_mail_err").innerHTML="";
+document.getElementById("date_err").innerHTML="";
+document.getElementById("period_err").innerHTML="";
+document.getElementById("payment_err").innerHTML="";
+
+    var first_name = document.forms["form1"]["first_name"].value;
+    var last_name = document.forms["form1"]["last_name"].value;
+	var customer_mail = document.forms["form1"]["customer_mail"].value;
+	var date1 = document.forms["form1"]["date"].value;
+	var period = document.forms["form1"]["period"].value;
+	var payment = document.forms["form1"]["payment"].value;
+	
+	 var letters = /^[A-Za-z]+$/;
+	  var atpos = customer_mail.indexOf("@");
+    var dotpos = customer_mail.lastIndexOf(".");
+    
+    if (first_name == "") {
+	document.getElementById("first_name_err").innerHTML="please fill in the first name";
+        return false;	
+    }
+	if(!first_name.match(letters)){
+	document.getElementById("first_name_err").innerHTML="you can't fill numbers in name";
+	return false;
+	}
+    if (last_name == "") {
+	document.getElementById("last_name_err").innerHTML="please fill in the last name";
+        return false;	
+    }
+	if(!last_name.match(letters)){
+	document.getElementById("last_name_err").innerHTML="you can't fill numbers in name";
+	return false;
+	}
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=customer_mail.length) {
+	document.getElementById("customer_mail_err").innerHTML="Please enter a valid email address";
+        return false;
+    }
+	if (date1 == "") {
+	document.getElementById("date_err").innerHTML="please enter date";
+        return false;	
+    }
+	if (period == "") {
+	document.getElementById("period_err").innerHTML="please choose a period";
+        return false;	
+    }
+	if (payment == "") {
+	document.getElementById("payment_err").innerHTML="please choose a payment method";
+        return false;	
+    }
+	
+    
+    
+	
+}
+</script>
+</head>
+
+<body bgcolor="#F0F0F">
+
+   <div>
+     <header>
+  <div>
+ <header>
+    
+        <a href="#" id="logo"><img src="C:\wamp64\www\gym\logo.png" height="48px"></a>
+	  <nav>
+		   <ul>
+		   <li><a href="index.html" >Home</a></li>
+		   <li><a href="trainers.html">Trainers</a></li>		 
+		   <li><a href="plans.html">Plans</a></li>
+		   <li><a href="pricing.html" >Pricing</a></li>
+	       <li><a href="facilities.html">Facilities</a></li>
+           <li><a href="contact-us.html" class="current">Contact us</a></li>		  
+		  </ul>
+      </nav>	
+ </header>
+ </div>
+     </header>
+  </div>	
+  <div class="a">
+ <p align="center" class="head" width=auto> Ready to enroll new members? Whether you own a gym, serve as a marketing manager, or are simply in charge of membership services, having an efficient process will make your life easier - and save you time. Use our online Gym Membership Form to swiftly and professionally gather essential information on new members so you can get them processed and working out in no time!</p>
+ <h2 align="center" >Gym Registration Form</h2>
+
+  <table width="300px" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+<td><form name="form1" method="post" action="contact-us.php" onsubmit="return validateForm()" >
+<table width="100%" border="0" cellspacing="2" cellpadding="3">
+</tr>
+<td width="26%">First Name:</td>
+<td width="10%">:</td>
+<td width="62%"><input name="first_name" type="text" id="first" size="50"></td>
+</tr>
+<tr>
+
+<td colspan="3"><b style="color:red" id="first_name_err"></b></td>
+</tr>
+<tr>
+<td>Last Name:</td>
+<td>:</td>
+<td><input name="last_name" type="text" id="last" size="50"></td>
+</tr>
+<tr>
+
+<td colspan="3"><b style="color:red" id="last_name_err"></b></td>
+</tr>
+<tr>
+<td>Email</td>
+<td>:</td>
+<td><input name="customer_mail" type="text" id="customer_mail" size="50"></td>
+</tr>
+<tr>
+
+<td colspan="3"><b style="color:red" id="customer_mail_err"></b></td>
+</tr>
+<tr>
+<td>Membership Start Date</td>
+<td>:</td>
+<td><input type="date" name="date" ></td>
+</tr>
+<tr>
+
+<td colspan="3"><b style="color:red" id="date_err"></b></td>
+</tr>
+<tr>
+<td>Membership Duration</td>
+<td>:</td>
+<td><input list="period" name="period"></td>
+<datalist id="period">
+  <option value="1 Month">
+  <option value="3 Months">
+  <option value="6 Months">
+  <option value="1 Year">
+  <option value="2 Year">
+  <option value="Lifetime">
+</datalist>
+</tr>
+<tr>
+
+<td colspan="3"><b style="color:red" id="period_err"></b></td>
+</tr>
+<tr>
+<td>Payment Type</td>
+<td>:</td>
+<td><input list="payment" name="payment"></td>
+<datalist id="payment">
+  <option value="Cash in full">
+  <option value="Direct Debit">
+  <option value="Credit Card">
+  <option value="Cheque">
+  <option value="DD Initial Fee">
+</datalist>
+</tr>
+<tr>
+
+<td colspan="3"><b style="color:red" id="payment_err"></b></td>
+</tr>
+<tr>
+<td>Additional Medical Notes</td>
+<td>:</td>
+<td><textarea name="detail" cols="50" rows="4" id="detail"></textarea></td>
+
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td><input type="submit" name="Submit" value="Submit"> <input type="reset" name="Submit2" value="Reset"></td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+  
+  
+  	
+	<div>
+  <footer>
+	    <section>
+		<p><h3>The Gym</h3></p>
+		<p><h5>9990829890<h5><p>
+		<p>Block F,Pocket-26<br>
+		   Sector-11,Rohini<br>
+		   DELHI-110085</p><br/>
+	    </section>
+	    <section>
+		<p><h3>Social media<h3></p>
+		 <ul class="social">
+		     <li><a href="#"><img src="C:\wamp64\www\gym\facebook1.png"/></a></li>
+			<li><a href="#"><img src="C:\wamp64\www\gym\googleplus.png"/></a></li>
+			<li><a href="#"><img src="C:\wamp64\www\gym\twitter1.png"/></a></li>
+			<li><a href="#"><img src="C:\wamp64\www\gym\youtube1.png"/></a></li>
+		 </ul>
+		</section>
+        <section>
+		    <img src="C:\wamp64\www\gym\weight-lifter.png"/>
+	    </section>
+        
+	 </footer>
+	 <footer class="second">
+	    <p>@copyright-the gym,2017</p>
+	 </footer>
+	 
+</div>	 
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8"/>
+
+<title>The Gym</title>
+<meta name="viewport" content="width=divice-width, intial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="index.css"/>
+
+
+</head>
+
+<body bgcolor="#F0F0F">
+
+   <div>
+     <header>
+  <div>
+ <header>
+    
+        <a href="index.html" id="logo"> <img src="C:\wamp64\www\gym\logo.png"> </a>
+	  <nav>
+		   <ul>
+		   <li><a href="index.html" class="current">Home</a></li>
+		   <li><a href="trainers.html">Trainers</a></li>		 
+		   <li><a href="plans.html">Plans</a></li>
+		   <li><a href="pricing.html">Pricing</a></li>
+	       <li><a href="facilities.html">Facilities</a></li>
+           <li><a href="contactjs.html">Contact us</a></li>		  
+		  </ul>
+      </nav>	
+ </header>
+ </div>
+     </header>
+  </div>	
+  <br>
+  <br>
+  <br>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1590px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 100%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="C:\wamp64\www\gym\Fall-Down-Gym-Quotes-Images.jpg" style="width:100%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="C:\wamp64\www\gym\cach.jpg" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="C:\wamp64\www\gym\go-to.jpg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+
+		 
+			
+	    </div>
+	</div>
+	  <div class="tag">
+      <section>
+	    <img src="C:\wamp64\www\gym\trainers.png"/>
+		<p><h1> Best trainers around!</h1></p>
+		<p>Here at The Gym we have the best training staff in the tri-state area as we seek out and recruit talented trainers with all the right certifications. Come in today and have a sit down with one of our trainers so we can help you meet your goals in the fastest way possible!</p>
+	 
+     </section>
+     <section>
+	  
+	    <img src="C:\wamp64\www\gym\location.png"/>
+		<p><h1>Location </h1></p>
+		<p> Our location sits near the center of four major roadway exits making it very convenient for gym goers and personal training clients to get their workouts in before or after work, even on a short lunch break!</p>
+	 
+     </section>
+     <section>
+	    <img src="C:\wamp64\www\gym\check.png"/>
+		<p><h1>Check us out!</h1> </p>
+	    <p>To show how confident we are in our facilities and their satisfying the needs of our clients, we offer a free two week pass so anyone interested can first get a feel for our gym and decide whether on not they'd like to join. Call or come in today for your free pass!</p>  </section>
+	  </div>
+	<div class="clear"></div>
+    <article>
+	<img src="C:\wamp64\www\gym\gym-classes.jpg"/>
+	</article>
+    <aside>
+	   <p><h2>Group classes schedule</h2></p>
+	<ul>	
+	    <li><p><h4>studio cycling at 8:00am   - 60 min</h4></p></li>
+	    <li><p><h4>abs sculpting  at 12:00pm  - 30 min</h4></p></li>
+	    <li><p><h4>power yoga     at 2:00pm   - 30 min</h4></p></li>
+	    <li><p><h4>boot camp      at 4:00pm   - 40 min</h4></p></li>
+	</ul>
+	</aside>
+	
+	<div class="clear"></div>
+     <div class="gym"><section> 
+		<p><h1>Ladies section</h1> </p>
+		<img src="C:\wamp64\www\gym\ladies-gym.jpg"/>
+	    <p>Included in our facility is a "ladies only" section of the gym where women can workout to themselves.</p>
+     </section>
+     <section> 
+		<p><h1>Gym Floor</h1> </p>
+		<img src="C:\wamp64\www\gym\gym-floor.jpg"/>
+	    <p>Our gym floor is as spacious as they come. Enjoy scenic views from the cardio equipment on the third floor.</p>
+     </section>
+     <section> 
+		<p><h1>Free weights</h1> </p>
+		<img src="C:\wamp64\www\gym\free-weights.jpg"/>
+	    <p>Our free weights section has an extensive collection of dumbbells and Olympic plates for body building.
+</p>
+     </section>
+	</div> 
+	
+	<div>
+  <footer>
+	    <section>
+		<p><h3>The Gym</h3></p>
+		<p><h5>9990829890<h5><p>
+		<p>Block ,206<br>
+		   Sector-11,Rohini<br>
+		   DELHI-110085</p><br/>
+	    </section>
+	    <section>
+		<p><h3>Social media<h3></p>
+		 <ul class="social">
+		    <li><a href="https://en-gb.facebook.com/login/" target="_blank"><img src="C:\wamp64\www\gym\facebook1.png"/></a></li>
+			<li><a href="https://accounts.google.com/ServiceLogin/signinchooser?elo=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" target="_blank"><img src="C:\wamp64\www\gym\googleplus.png"/></a></li>
+			<li><a href="https://twitter.com/login?lang=en" target="_blank"><img src="C:\wamp64\www\gym\twitter1.png"/></a></li>
+			<li><a href="https://www.youtube.com/" targt="_blank"><img src="C:\wamp64\www\gym\youtube1.png"/></a></li>
+		 </ul>
+		</section>
+        <section>
+		    <img src="C:\wamp64\www\gym\weight-lifter.png"/>
+	    </section>
+        
+	 </footer>
+	 <footer class="second">
+	    <p>@copyright-the gym,2017</p>
+	 </footer>
+	 
+</div>	 
+
+</body>
+</html>

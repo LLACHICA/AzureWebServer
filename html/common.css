@@ -1,0 +1,100 @@
+
+body{
+	font-family:Arial,San-Serif,14px/20px;
+	background:#F0F0F0
+	color:#555;
+	font-size:110%;
+	margin:0;
+
+}	
+
+header{
+	background-color:#405580;
+	padding:10px;
+	margin-bottom:10px;
+	opacity:0.90;
+	width:100%;
+	z-index:100;
+	height:86px;
+	position:fixed;
+	top:0;
+	left:0;
+
+
+	
+}
+#logo { margin-left:20px;
+        float:left;
+		width:200px;
+		height:60px;
+		background:url(http://www.w3newbie.com/wp-content/uploads/the-gym.png) no-repeat center;
+}
+
+nav{ float:right;
+	padding:35px 20px 20px 0;
+}
+ 
+ #content{ 
+	  
+	      max-width=100%;
+          margin-top=40px;
+		  }
+		  
+#bomb img{
+	    
+	    width:100%;
+	}
+
+.tag img{
+          width:35%;		
+		
+	}	  
+ ul{
+	 list-style:none;
+ }
+
+ nav ul li{
+	   display:inline-block;
+	   float:left;
+	   padding:10px;
+	   padding-bottom:5%;
+ }
+ 
+  nav ul li a{
+	  text-decoration:none;
+	  color:#FFF;
+	  
+  }
+ .current{
+	 color:#FFF;
+	 text-decoration:underline;
+	 
+ }
+
+ footer{ background-color:#333333;
+	    width:100%;
+		overflow:hidden;
+		opacity:0.90;
+}
+
+footer p, footer h3,footer h5{
+	    color:#FFF;
+		
+}
+
+ul.social li{ display:inline;
+	
+}
+
+ul.social img{ width: 50px;
+	
+}
+
+footer.second{
+	    border-top: 2px solid #4D4E50
+		background-color:#333333;
+		text-align:center;
+		opacity:1.5;
+		
+}
+
