@@ -20,12 +20,12 @@ sudo usermod -a -G docker $USER
 sudo systemctl enable docker
 sudo systemctl restart docker
 sudo mkdir /root/nginx-staging
-sudo cd /root/nginx-staging
+cd /root/nginx-staging
 sudo git clone https://github.com/LLACHICA/AzureWebServer.git
-sudo cd AzureWebServer
-sudo cp -rp /root/AzureWebServer/html/* /usr/share/nginx/html
-sudo cp /root/AzureWebServer/scripts/my-web.conf /etc/nginx/conf.d/
-sudo cd /root/AzureWebServer
+cd AzureWebServer
+sudo cp -rp ./html/* /usr/share/nginx/html
+sudo cp ./scripts/my-web.conf /etc/nginx/conf.d/
+cd /root/nginx-staging/AzureWebServer
 docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website .
 sudo docker run --name docker-nginx -p 80:80 my-nginx-website
 # docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website .
