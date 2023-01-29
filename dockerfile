@@ -3,9 +3,8 @@ FROM nginx:latest
 ARG IP_ADDRESS
 ENV IP_ADDRESS ${IP_ADDRESS}
 
-COPY nginx.template /etc/nginx/nginx.template
+# Expose port 80 for incoming connections
+EXPOSE 80
 
-RUN envsubst < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && \
-    rm /etc/nginx/nginx.template
-
-COPY /var/www/html/*  /usr/share/nginx/html
+# Start Nginx as the default command when the container is run
+CMD ["nginx", "-g", "daemon off;"]
