@@ -3,8 +3,8 @@ FROM nginx:latest
 ARG IP_ADDRESS
 ENV IP_ADDRESS ${IP_ADDRESS}
 
-COPY /root/nginx-staging/AzureWebServer/scripts/my-web.conf /etc/nginx/nginx.template
+COPY ./scripts/my-web.conf /etc/nginx/nginx.template
 
-RUN envsubst < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && \
+RUN envsubst < /etc/nginx/nginx.template > /etc/nginx/conf.d/my-web.conf && \
     rm /etc/nginx/nginx.template
-COPY /root/nginx-staging/AzureWebServer/html/*  /usr/share/nginx/html
+COPY ./html/*  /usr/share/nginx/html
