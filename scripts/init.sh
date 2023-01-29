@@ -26,6 +26,7 @@ cd AzureWebServer
 sudo cp -rp ./html/* /usr/share/nginx/html
 sudo cp ./scripts/my-web.conf /etc/nginx/conf.d/
 cd /root/nginx-staging/AzureWebServer
+sudo systemctl stop nginx
 docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website .
 sudo docker run --name docker-nginx -p 80:80 my-nginx-website
 # docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website
