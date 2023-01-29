@@ -5,6 +5,6 @@ ENV IP_ADDRESS ${IP_ADDRESS}
 
 COPY ./scripts/my-web.conf /etc/nginx/nginx.template
 
-RUN envsubst < /etc/nginx/nginx.template > /etc/nginx/conf.d/my-web.conf && \
+RUN envsubst '$IP_ADDRESS' < /etc/nginx/nginx.template > /etc/nginx/conf.d/my-web.conf && \
     rm /etc/nginx/nginx.template
-COPY ./html/*  /usr/share/nginx/html
+COPY ./html/*  /usr/share/nginx/html/
