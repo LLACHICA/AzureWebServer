@@ -1,10 +1,10 @@
 
 body{
 	font-family:Arial,San-Serif,14px/20px;
-	background:#F0F0F0
-	color:#555;
-	font-size:110%;
-	margin:0;
+	background:#F0F0F0;
+	color: #555;
+	font-size: 110%;
+	margin: 0;
 
 }	
 
@@ -36,8 +36,8 @@ nav{ float:right;
  
  #content{ 
 	  
-	      max-width=100%;
-          margin-top=40px;
+	      max-width: 100%;
+          margin-top: 40px;
 		  }
 		  
 #bomb img{
@@ -55,7 +55,7 @@ nav{ float:right;
 
  nav ul li{
 	   display:inline-block;
-	   float:left;
+	   float: left;
 	   padding:10px;
 	   padding-bottom:5%;
  }
@@ -91,7 +91,7 @@ ul.social img{ width: 50px;
 }
 
 footer.second{
-	    border-top: 2px solid #4D4E50
+	    border-top: 2px solid #4D4E50;
 		background-color:#333333;
 		text-align:center;
 		opacity:1.5;
