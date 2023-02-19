@@ -51,12 +51,12 @@ resource "azurerm_linux_virtual_machine" "nginx" {
 #  location            = azurerm_resource_group.webserver.location
 #  resource_group_name = azurerm_resource_group.webserver.name
 #
- # administrator_login          = "mysqladmin"
-  #administrator_login_password = "Admin123!"
-#
- # sku_name   = "GP_Gen5_2"
-  #storage_mb = 5120
-  #version    = "5.7"
+#  administrator_login          = "mysqladmin"
+#  administrator_login_password = "Admin123!"
+
+#  sku_name   = "GP_Gen5_2"
+#  storage_mb = 5120
+#  version    = "5.7"
 
 #  auto_grow_enabled                 = true
 #  backup_retention_days             = 7
@@ -68,11 +68,11 @@ resource "azurerm_linux_virtual_machine" "nginx" {
 #}
 
 #resource "azurerm_mysql_database" "mysqlDB" {
-  name                = "webserver-mysqldb"
-  resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mysql_server.mysqlDBserver.name
+#  name                = "webserver-mysqldb"
+#  resource_group_name = azurerm_resource_group.webserver.name
+#  server_name         = azurerm_mysql_server.mysqlDBserver.name
 
 
-  charset             = "utf8"
-  collation           = "utf8_unicode_ci"
+#  charset             = "utf8"
+#  collation           = "utf8_unicode_ci"
 #}
