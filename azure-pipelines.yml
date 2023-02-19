@@ -1,0 +1,37 @@
+stages:
+- stage: Plan
+  displayName: 'Terraform Plan'
+  jobs:
+  - job: Plan
+    displayName: 'Terraform Plan'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: TerraformCLI@0
+      inputs:
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/'
+    - task: TerraformCLI@0
+      inputs:
+        command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/'
+
+- stage: Apply
+  displayName: 'Terraform Apply'
+  dependsOn: Plan
+  jobs:
+  - job: Apply
+    displayName: 'Terraform Apply'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: TerraformCLI@0
+      inputs:
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/'
+    - task: TerraformCLI@0
+      inputs:
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/'
+        environmentServiceName: 'Name of your Azure DevOps service connection to your Terraform backend'
+        commandOptions: '-auto-approve'
