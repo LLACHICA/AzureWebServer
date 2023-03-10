@@ -6,13 +6,42 @@ resource_group_name = azurerm_resource_group.webserver.name
 address_space = ["10.0.0.0/16"]
 }
 
-# Create subnet
-resource "azurerm_subnet" "webserver_subnet" {
-  name                 = "SubnetInt"
+# Create subnet VM
+resource "azurerm_subnet" "webserver_subnet1" {
+  name                 = "SubnetInt1"
   resource_group_name = azurerm_resource_group.webserver.name
   virtual_network_name = azurerm_virtual_network.webserver_vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
+
+# Create subnet DB
+resource "azurerm_subnet" "webserver_subnet2" {
+  name                 = "SubnetInt2"
+  resource_group_name = azurerm_resource_group.webserver.name
+  virtual_network_name = azurerm_virtual_network.webserver_vnet.name
+  address_prefixes     = ["10.0.2.0/24"]
+  service_endpoints    = ["Microsoft.Sql"]
+}
+
+resource "azurerm_mariadb_virtual_network_rule" "maria-vnetrule" {
+  name                = "mariadb-vnet-rule"
+  resource_group_name = azurerm_resource_group.webserver.name
+  server_name         = azurerm_mariadb_server.mysqlDBserver.name
+  subnet_id           = azurerm_subnet.webserver_subnet2.id
+}
+
+resource "azurerm_private_dns_zone" "webserverDNS" {
+  name                = "webserver.mysql.database.azure.com"
+  resource_group_name = azurerm_resource_group.webserver.name
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "webserverzone" {
+  name                  = "WebVnetZone.com"
+  private_dns_zone_name = azurerm_private_dns_zone.webserverDNS.name
+  virtual_network_id    = azurerm_virtual_network.webserver_vnet.id
+  resource_group_name   = azurerm_resource_group.webserver.name
+}
+
 # Create public IPs
 resource "azurerm_public_ip" "webserver_public_ip" {
   name                = "PublicIP"
@@ -36,7 +65,7 @@ resource "azurerm_network_interface" "webserver_NIC" {
 
   ip_configuration {
     name                       = "internal"
-    subnet_id                  = azurerm_subnet.webserver_subnet.id
+    subnet_id                  = azurerm_subnet.webserver_subnet1.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.webserver_public_ip.id
   }

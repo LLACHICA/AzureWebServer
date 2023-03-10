@@ -46,58 +46,48 @@ resource "azurerm_linux_virtual_machine" "nginx" {
    
 }
 
-resource "azurerm_mysql_server" "mysqlDBserver" {
-  name                = "webserver-mysqlserver"
-  location            = azurerm_resource_group.webserver.location
-  resource_group_name = azurerm_resource_group.webserver.name
+resource "azurerm_mariadb_server" "mysqlDBserver" {
+  name                          = "webserver-mysqlserver"
+  location                      = azurerm_resource_group.webserver.location
+  resource_group_name           = azurerm_resource_group.webserver.name
 
-  administrator_login          = var.mysql_administrator_login
-  administrator_login_password = var.mysql_administrator_login_password
+  administrator_login           = var.mysql_administrator_login
+  administrator_login_password  = var.mysql_administrator_login_password
 
-  sku_name   = "GP_Gen5_2"
+  sku_name   = "B_Gen5_2"
   storage_mb = 5120
-  version    = "5.7"
+  version    = "10.2"
 
-  auto_grow_enabled                 = true
-  backup_retention_days             = 7
-  geo_redundant_backup_enabled      = true
-  infrastructure_encryption_enabled = false
-  public_network_access_enabled     = true
-  ssl_enforcement_enabled           = false
+  auto_grow_enabled                = true
+  backup_retention_days            = 7
+  geo_redundant_backup_enabled     = false
+  public_network_access_enabled    = false
+  ssl_enforcement_enabled          = true
+  ssl_minimal_tls_version_enforced = "TLS1_2"
 
 }
 
-resource "azurerm_mysql_database" "mysqlDB" {
+
+resource "azurerm_mariadb_database" "mysqlDB" {
   name                = "webserver-mysqldb"
   resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mysql_server.mysqlDBserver.name
-  charset             = "utf8"
-  collation           = "utf8_unicode_ci"
-
+  server_name         = azurerm_mariadb_server.mysqlDBserver.name
+  charset             = "utf8mb4"
+  collation           = "utf8mb4_unicode_520_ci"
 }
 
-resource "azurerm_mysql_firewall_rule" "mysqlFW" {
+resource "azurerm_mariadb_firewall_rule" "mysqlFW" {
   name                = "AllowMyIP"
   resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mysql_server.mysqlDBserver.name
+  server_name         = azurerm_mariadb_server.mysqlDBserver.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
 }
 
-resource "azurerm_mysql_configuration" "members_table_config" {
-  name                = "members_table_config"
+resource "azurerm_mariadb_configuration" "dbconf" {
+  name                = "MariaDb-conf"
   resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mysql_server.mysqlDBserver.name
-  value               = "sql_mode=NO_ENGINE_SUBSTITUTION"
+  server_name         = azurerm_mariadb_server.mysqlDBserver.name
+  value               = "600"
 }
 
-resource "null_resource" "create_members_table" {
-  depends_on = [
-    azurerm_mysql_database.mysqlDB,
-    azurerm_mysql_configuration.members_table_config
-  ]
-
-  provisioner "local-exec" {
-    command = "mysql -h ${azurerm_mysql_server.mysqlDBserver.fqdn} -u ${var.mysql_administrator_login} -p${var.mysql_administrator_login_password} -e 'CREATE TABLE gym_membership.members (id INT(11) NOT NULL AUTO_INCREMENT, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, start_date DATE NOT NULL, duration VARCHAR(20) NOT NULL, payment_type VARCHAR(50) NOT NULL, medical_notes TEXT, PRIMARY KEY (id));'"
-  }
-}
