@@ -23,12 +23,6 @@ resource "azurerm_subnet" "webserver_subnet2" {
   service_endpoints    = ["Microsoft.Sql"]
 }
 
-resource "azurerm_mariadb_virtual_network_rule" "maria-vnetrule" {
-  name                = "mariadb-vnet-rule"
-  resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mariadb_server.mysqlDBserver.name
-  subnet_id           = azurerm_subnet.webserver_subnet2.id
-}
 
 resource "azurerm_private_dns_zone" "webserverDNS" {
   name                = "webserver.mysql.database.azure.com"
