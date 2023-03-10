@@ -64,8 +64,7 @@ resource "azurerm_mysql_server" "mysqlDBserver" {
   infrastructure_encryption_enabled = false
   public_network_access_enabled     = true
   ssl_enforcement_enabled           = false
-  minimal_tls_version               = "TLS1_2"
-  
+
 }
 
 resource "azurerm_mysql_database" "mysqlDB" {
