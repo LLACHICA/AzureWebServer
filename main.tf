@@ -69,7 +69,7 @@ resource "azurerm_mariadb_server" "mysqlDBserver" {
 
 
 resource "azurerm_mariadb_database" "mysqlDB" {
-  name                = "webserver-mysqldb"
+  name                = "webserver_mysqldb"
   resource_group_name = azurerm_resource_group.webserver.name
   server_name         = azurerm_mariadb_server.mysqlDBserver.name
   charset             = "utf8mb4"
