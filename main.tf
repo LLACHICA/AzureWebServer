@@ -77,18 +77,25 @@ resource "azurerm_mysql_database" "mysqlDB" {
   collation           = "utf8_unicode_ci"
 
   # Create a table to store the form data
-  #provisioner "remote-exec" {
-  #      connection {
-  #    type        = "ssh"
-  #    host        = azurerm_public_ip.webserver_public_ip.fqdn
-  #    user        = var.ssh_username
-  #    password    = var.ssh_password
-  #    agent       = false
-  #    timeout     = "30s"
-  #  }
-  #  inline = [
-  #    "mysql -u ${var.mysql_administrator_login} -p${var.mysql_administrator_login_password} -e \"CREATE TABLE gym_members (id INT(11) NOT NULL AUTO_INCREMENT, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, email VARCHAR(50) NOT NULL, start_date DATE NOT NULL, duration VARCHAR(50) NOT NULL, payment_type VARCHAR(50) NOT NULL, medical_notes TEXT, PRIMARY KEY (id));\" ${azurerm_mysql_database.mysqlDB.name}"
-  #  ]
+  provisioner "remote-exec" {
+        connection {
+      type        = "ssh"
+      host        = azurerm_mysql_server.mysqlDBserver.fqdn
+      user        = var.mysql_administrator_login
+      password    = var.mysql_administrator_login_password
+      agent       = false
+      timeout     = "30s"
+    }
+    inline = [
+      "mysql -u ${var.mysql_administrator_login} -p${var.mysql_administrator_login_password} -e \"CREATE TABLE gym_members (id INT(11) NOT NULL AUTO_INCREMENT, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, email VARCHAR(50) NOT NULL, start_date DATE NOT NULL, duration VARCHAR(50) NOT NULL, payment_type VARCHAR(50) NOT NULL, medical_notes TEXT, PRIMARY KEY (id));\" ${azurerm_mysql_database.mysqlDB.name}"
+    ]
 
-  #}
+  }
+}
+resource "azurerm_mysql_firewall_rule" "mysqlFW" {
+  name                = "AllowMyIP"
+  resource_group_name = azurerm_resource_group.webserver.name
+  server_name         = azurerm_mysql_server.mysqlDBserver.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
 }
