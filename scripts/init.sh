@@ -24,11 +24,11 @@ sudo git clone https://github.com/LLACHICA/AzureWebServer.git
 cd AzureWebServer
 sudo cp -rp ./html/* /usr/share/nginx/html
 sudo cp ./scripts/my-web.conf /etc/nginx/conf.d/
-sudo cp ./scripts/sql_create.sh /root/
+sudo cp ./scripts/sql_create.sh /root/ && chmod 755 /root/sql_create.sh
 cd /root/nginx-staging/AzureWebServer
 IP_ADDRESS=$(hostname -i)
 docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website .
 sudo systemctl stop nginx
 sudo docker run --name docker-nginx -p 80:80 my-nginx-website
-sudo chmod 755 /root/sql_create.sh && /root/sql_create.sh
+sudo /root/sql_create.sh output.txt 2>&1
 
