@@ -42,7 +42,7 @@ resource "azurerm_linux_virtual_machine" "nginx" {
        title = var.project
    }
 
-   depends_on = [azurerm_resource_group.webserver]
+#   depends_on = [azurerm_resource_group.webserver]
    depends_on = [azurerm_mariadb_database.mysqlDB]
    
 }
