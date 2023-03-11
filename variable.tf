@@ -24,7 +24,7 @@ variable "project" {
 
 variable "mysql_administrator_login" {
   type    = string
-  default = "mysqladmin"
+  default = "mariaadmin"
 }
 
 variable "mysql_administrator_login_password" {
