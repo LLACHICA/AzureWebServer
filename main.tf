@@ -43,6 +43,7 @@ resource "azurerm_linux_virtual_machine" "nginx" {
    }
 
    depends_on = [azurerm_resource_group.webserver]
+   depends_on = [azurerm_mariadb_database.mysqlDB]
    
 }
 
@@ -51,8 +52,8 @@ resource "azurerm_mariadb_server" "mysqlDBserver" {
   location                      = azurerm_resource_group.webserver.location
   resource_group_name           = azurerm_resource_group.webserver.name
 
-  administrator_login           = "mariaadmin"
-  administrator_login_password  = "Admin123!"
+  administrator_login           = var.mysql_administrator_login
+  administrator_login_password  = var.mysql_administrator_login_password
 
   sku_name   = "B_Gen5_2"
   storage_mb = 5120
