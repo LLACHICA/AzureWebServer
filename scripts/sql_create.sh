@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Generate a time stamp
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+
 # Set up database connection parameters
 DB_HOST="webserver-mysqlserver.mariadb.database.azure.com"
 DB_USER="mariaadmin@webserver-mysqlserver"
@@ -19,5 +22,7 @@ medical_notes TEXT,
 PRIMARY KEY (id)
 );"
 
+# Echo the time stamp
+echo "Script started at $TIMESTAMP"
 # Execute the SQL query to create the table
 mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" -D "$DB_NAME" -e "$CREATE_TABLE_SQL"

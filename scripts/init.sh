@@ -30,5 +30,5 @@ IP_ADDRESS=$(hostname -i)
 docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website .
 sudo systemctl stop nginx
 sudo docker run --name docker-nginx -p 80:80 my-nginx-website
-sudo /root/sql_create.sh output.txt 2>&1
+sudo . /root/sql_create.sh > output.txt 2>&1
 
