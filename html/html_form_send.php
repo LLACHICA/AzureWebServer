@@ -1,31 +1,37 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname="gym";
+// Database credentials
+$host = "webserver-mysqlserver.mariadb.database.azure.com";
+$username = "mariaadmin@webserver-mysqlserver";
+$password = "Admin123!";
+$database = "webserver_mysqldb";
 
-    $conn = new mysqli($servername, $username, $password,$dbname);
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    } 
-    $fname=$_POST['first_name'];
-    print_r($_POST['first_name']);
-    $sql=$conn->prepare("INSERT INTO gym_data (First Name,Last Name,Email Address,Telephone Number,Comments)VALUES(?,?,?,?,?)");
-    $sql->bind_param('sssds',$_POST['first_name'],$_POST['last_name'],$_POST['email'],$_POST['telephone'],$_POST['comments']);
+// Connect to database
+$conn = mysqli_connect($host, $username, $password, $database);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-    if($sql->execute()){
+// Check if the form was submitted
+if (isset($_POST['Submit'])) {
+    // Sanitize and validate form data
+    $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
+    $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
+    $email = mysqli_real_escape_string($conn, $_POST['customer_mail']);
+    $start_date = mysqli_real_escape_string($conn, $_POST['date']);
+    $duration = mysqli_real_escape_string($conn, $_POST['period']);
+    $payment_type = mysqli_real_escape_string($conn, $_POST['payment']);
+    $medical_notes = mysqli_real_escape_string($conn, $_POST['detail']);
 
-    echo "New records created successfully";
+    // Insert data into database
+    $sql = "INSERT INTO your_table_name (first_name, last_name, email, start_date, duration, payment_type, medical_notes) 
+            VALUES ('$first_name', '$last_name', '$email', '$start_date', '$duration', '$payment_type', '$medical_notes')";
+    if (mysqli_query($conn, $sql)) {
+        echo "Data inserted successfully";
+    } else {
+        echo "Error inserting data: " . mysqli_error($conn);
     }
-    else{
-    echo 'Error'.$conn->error;
+}
 
-
-    }
-
-$sql->close();
-$conn->close();
+// Close database connection
+mysqli_close($conn);
 ?>
-
-</body>
-</html>
