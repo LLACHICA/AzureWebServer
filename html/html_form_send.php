@@ -10,6 +10,7 @@ $conn = mysqli_connect($host, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+echo "Connected successfully";
 
 // Check if the form was submitted
 if (isset($_POST['Submit'])) {
@@ -23,7 +24,7 @@ if (isset($_POST['Submit'])) {
     $medical_notes = mysqli_real_escape_string($conn, $_POST['detail']);
 
     // Insert data into database
-    $sql = "INSERT INTO your_table_name (first_name, last_name, email, start_date, duration, payment_type, medical_notes) 
+    $sql = "INSERT INTO gym_members (first_name, last_name, email, start_date, duration, payment_type, medical_notes) 
             VALUES ('$first_name', '$last_name', '$email', '$start_date', '$duration', '$payment_type', '$medical_notes')";
     if (mysqli_query($conn, $sql)) {
         echo "Data inserted successfully";
