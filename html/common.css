@@ -23,12 +23,7 @@ header{
 
 	
 }
-#logo { margin-left:20px;
-        float:left;
-		width:200px;
-		height:60px;
-		background:url(http://www.w3newbie.com/wp-content/uploads/the-gym.png) no-repeat center;
-}
+
 
 nav{ float:right;
 	padding:35px 20px 20px 0;
@@ -79,6 +74,8 @@ nav{ float:right;
 
 footer p, footer h3,footer h5{
 	    color:#FFF;
+		text-align: left;
+		margin-left:2px;
 		
 }
 
@@ -90,7 +87,7 @@ ul.social img{ width: 50px;
 	
 }
 
-footer.second{
+footer.second p {
 	    border-top: 2px solid #4D4E50;
 		background-color:#333333;
 		text-align:center;
