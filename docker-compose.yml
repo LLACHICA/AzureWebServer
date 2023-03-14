@@ -6,8 +6,8 @@ services:
        ports:
            - "8080:80"
        volumes:
-           - ./html/:/usr/share/nginx/html
-           - ./scripts:/etc/nginx/conf.d
+           - /usr/share/nginx/htm:/usr/share/nginx/html
+           - /etc/nginx/conf.d:/etc/nginx/conf.d
            - /etc/localtime:/etc/localtime
        networks:
            - nginxphp
@@ -15,7 +15,7 @@ services:
      php:
        image: php:7.1.11-fpm-alpine
        volumes:
-           - ./html/:/usr/share/nginx/html
+           - /usr/share/nginx/html:/usr/share/nginx/html
        expose:
            - 9000
        networks:
