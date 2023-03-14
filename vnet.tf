@@ -14,27 +14,27 @@ resource "azurerm_subnet" "webserver_subnet1" {
   address_prefixes     = ["10.0.1.0/24"]
 }
 
-# Create subnet DB
-resource "azurerm_subnet" "webserver_subnet2" {
-  name                 = "SubnetInt2"
-  resource_group_name = azurerm_resource_group.webserver.name
-  virtual_network_name = azurerm_virtual_network.webserver_vnet.name
-  address_prefixes     = ["10.0.2.0/24"]
-  service_endpoints    = ["Microsoft.Sql"]
-}
+## Create subnet DB
+#resource "azurerm_subnet" "webserver_subnet2" {
+#  name                 = "SubnetInt2"
+#  resource_group_name = azurerm_resource_group.webserver.name
+#  virtual_network_name = azurerm_virtual_network.webserver_vnet.name
+#  address_prefixes     = ["10.0.2.0/24"]
+#  service_endpoints    = ["Microsoft.Sql"]
+#}
 
 
-resource "azurerm_private_dns_zone" "webserverDNS" {
-  name                = "webserver.mysql.database.azure.com"
-  resource_group_name = azurerm_resource_group.webserver.name
-}
+#resource "azurerm_private_dns_zone" "webserverDNS" {
+#  name                = "webserver.mysql.database.azure.com"
+#  resource_group_name = azurerm_resource_group.webserver.name
+#}
 
-resource "azurerm_private_dns_zone_virtual_network_link" "webserverzone" {
-  name                  = "WebVnetZone.com"
-  private_dns_zone_name = azurerm_private_dns_zone.webserverDNS.name
-  virtual_network_id    = azurerm_virtual_network.webserver_vnet.id
-  resource_group_name   = azurerm_resource_group.webserver.name
-}
+#resource "azurerm_private_dns_zone_virtual_network_link" "webserverzone" {
+#  name                  = "WebVnetZone.com"
+#  private_dns_zone_name = azurerm_private_dns_zone.webserverDNS.name
+#  virtual_network_id    = azurerm_virtual_network.webserver_vnet.id
+#  resource_group_name   = azurerm_resource_group.webserver.name
+#}
 
 # Create public IPs
 resource "azurerm_public_ip" "webserver_public_ip" {

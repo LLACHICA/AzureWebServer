@@ -43,42 +43,42 @@ resource "azurerm_linux_virtual_machine" "nginx" {
    }
 
 #   depends_on = [azurerm_resource_group.webserver]
-   depends_on = [azurerm_mariadb_database.mysqlDB]
+#   depends_on = [azurerm_mariadb_database.mysqlDB]
    
 }
 
-resource "azurerm_mariadb_server" "mysqlDBserver" {
-  name                          = "webserver-mysqlserver"
-  location                      = azurerm_resource_group.webserver.location
-  resource_group_name           = azurerm_resource_group.webserver.name
+#resource "azurerm_mariadb_server" "mysqlDBserver" {
+#  name                          = "webserver-mysqlserver"
+#  location                      = azurerm_resource_group.webserver.location
+#  resource_group_name           = azurerm_resource_group.webserver.name
 
-  administrator_login           = var.mysql_administrator_login
-  administrator_login_password  = var.mysql_administrator_login_password
+#  administrator_login           = var.mysql_administrator_login
+#  administrator_login_password  = var.mysql_administrator_login_password
 
-  sku_name   = "B_Gen5_2"
-  storage_mb = 5120
-  version    = "10.2"
+#  sku_name   = "B_Gen5_2"
+#  storage_mb = 5120
+#  version    = "10.2"
 
-  public_network_access_enabled    = true
-  ssl_enforcement_enabled          = false
-  ssl_minimal_tls_version_enforced = "TLSEnforcementDisabled"
+#  public_network_access_enabled    = true
+#  ssl_enforcement_enabled          = false
+#  ssl_minimal_tls_version_enforced = "TLSEnforcementDisabled"
 
-}
+#}
 
 
-resource "azurerm_mariadb_database" "mysqlDB" {
-  name                = "webserver_mysqldb"
-  resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mariadb_server.mysqlDBserver.name
-  charset             = "utf8mb4"
-  collation           = "utf8mb4_unicode_520_ci"
-}
+#resource "azurerm_mariadb_database" "mysqlDB" {
+#  name                = "webserver_mysqldb"
+#  resource_group_name = azurerm_resource_group.webserver.name
+#  server_name         = azurerm_mariadb_server.mysqlDBserver.name
+#  charset             = "utf8mb4"
+#  collation           = "utf8mb4_unicode_520_ci"
+#}
 
-resource "azurerm_mariadb_firewall_rule" "mysqlFW" {
-  name                = "AllowMyIP"
-  resource_group_name = azurerm_resource_group.webserver.name
-  server_name         = azurerm_mariadb_server.mysqlDBserver.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "255.255.255.255"
-}
+#resource "azurerm_mariadb_firewall_rule" "mysqlFW" {
+#  name                = "AllowMyIP"
+#  resource_group_name = azurerm_resource_group.webserver.name
+#  server_name         = azurerm_mariadb_server.mysqlDBserver.name
+#  start_ip_address    = "0.0.0.0"
+#  end_ip_address      = "255.255.255.255"
+#}
 

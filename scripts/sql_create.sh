@@ -4,10 +4,10 @@
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
 # Set up database connection parameters
-DB_HOST="webserver-mysqlserver.mariadb.database.azure.com"
-DB_USER="mariaadmin@webserver-mysqlserver"
-DB_PASS="Admin123!"
-DB_NAME="webserver_mysqldb"
+DB_HOST="mysql"
+DB_USER="myuser"
+DB_PASS="password"
+DB_NAME="mydb"
 
 # SQL query to create the table
 CREATE_TABLE_SQL="CREATE TABLE gym_members (
