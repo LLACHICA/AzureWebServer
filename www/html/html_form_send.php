@@ -1,9 +1,9 @@
 <?php
 // Database credentials
-$host = "webserver-mysqlserver.mariadb.database.azure.com";
-$username = "mariaadmin@webserver-mysqlserver";
-$password = "Admin123!";
-$database = "webserver_mysqldb";
+$host = "mysql";
+$username = "myuser";
+$password = "password";
+$database = "mydb";
 
 // Connect to database
 $conn = mysqli_connect($host, $username, $password, $database);
