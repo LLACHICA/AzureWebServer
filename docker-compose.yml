@@ -17,6 +17,7 @@ php:
     - mysql
   volumes_from:
     - app-data
+  command: php /var/www/html/create_table.php
 
 app-data:
   image: php:7.0-fpm
