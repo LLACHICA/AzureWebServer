@@ -54,6 +54,6 @@ if ($result) {
     echo "No data found.";
 }
 
-<button onclick="window.location.href='index.php'">Back to Main Page</button>
+//<button onclick="window.location.href='index.php'">Back to Main Page</button>
 
 ?>
