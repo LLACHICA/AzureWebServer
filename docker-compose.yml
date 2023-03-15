@@ -17,7 +17,6 @@ php:
     - mysql
   volumes_from:
     - app-data
-  command: php /var/www/html/create_table.php
 
 app-data:
   image: php:7.0-fpm
@@ -42,5 +41,4 @@ mysql-data:
   container_name: mysql-data-container
   volumes:
     - /var/lib/mysql
-    - .scripts:/docker-entrypoint-initdb.d
   command: "true"

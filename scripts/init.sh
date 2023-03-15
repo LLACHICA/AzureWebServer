@@ -25,11 +25,4 @@ cd /root/nginx-staging/AzureWebServer
 sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo docker-compose up -d
-#IP_ADDRESS=$(hostname -i)
-#docker build --build-arg IP_ADDRESS=$IP_ADDRESS -t my-nginx-website .
-#sudo docker run --name docker-nginx -p 80:80 my-nginx-website
-#sudo at now + 5 minutes -f /root/sql_create.sh > output.txt 2>&1
-
-sudo cp ./scripts/sql_create.sh /root/ && chmod 755 /root/sql_create.sh
-sudo /root/sql_create.sh > output.txt 2>&1
 
