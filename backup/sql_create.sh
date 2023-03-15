@@ -1,8 +1,3 @@
-#!/bin/bash
-
-# Generate a time stamp
-TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
-
 # Set up database connection parameters
 DB_HOST="mysql"
 DB_USER="myuser"

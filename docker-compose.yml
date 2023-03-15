@@ -42,4 +42,5 @@ mysql-data:
   container_name: mysql-data-container
   volumes:
     - /var/lib/mysql
+    - .scripts:/docker-entrypoint-initdb.d
   command: "true"
