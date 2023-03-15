@@ -41,7 +41,7 @@ $query = "SELECT * FROM gym_members";
 $result = $pdo->query($query);
 if ($result) {
     while ($row = $result->fetch()) {
-        echo "ID: " . $row['id'] . "<br>";
+        echo "<br>", "ID: " . $row['id'] . "<br>";
         echo "First Name: " . $row['first_name'] . "<br>";
         echo "Last Name: " . $row['last_name'] . "<br>";
         echo "Email: " . $row['email'] . "<br>";
@@ -62,7 +62,7 @@ if ($result) {
 <head>
 <meta charset="utf-8"/>
 
-<title>The Gym</title>
+<title>Hamza Gym</title>
 <meta name="viewport" content="width=divice-width, intial-scale=1.0"/>
 <link rel="stylesheet" type="text/css" href="common.css"/>
 </head>
