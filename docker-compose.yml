@@ -42,3 +42,11 @@ mysql-data:
   volumes:
     - /var/lib/mysql
   command: "true"
+
+php-script:
+  build: ./php/run/
+  container_name: php-script
+  links:
+    - mysql
+  volumes_from:
+    - app-data

@@ -1,3 +1,4 @@
+
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -54,6 +55,20 @@ if ($result) {
     echo "No data found.";
 }
 
-//<button onclick="window.location.href='index.php'">Back to Main Page</button>
 
 ?>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+
+<title>The Gym</title>
+<meta name="viewport" content="width=divice-width, intial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="common.css"/>
+</head>
+<body>
+<br><br>
+<button onclick="window.location.href='contactjs.html'">Back to Registration </button>
+</body>
+
+</html>
