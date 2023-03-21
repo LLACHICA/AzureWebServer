@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if data is inserted successfully
     if ($result && $stmt->rowCount() > 0) {
         // Display success message
-        echo "Data successfully inserted!";
+        echo "<br>Data successfully inserted!";
     } else {
         // Display error message
         echo "Failed to insert data: " . $stmt->errorInfo()[2];
@@ -40,35 +40,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $query = "SELECT * FROM gym_members";
 $result = $pdo->query($query);
 if ($result) {
+    echo "<table>";
+    echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Start Date</th><th>Duration</th><th>Payment Type</th><th>Medical Notes</th></tr>";
     while ($row = $result->fetch()) {
-        echo "<br>", "ID: " . $row['id'] . "<br>";
-        echo "First Name: " . $row['first_name'] . "<br>";
-        echo "Last Name: " . $row['last_name'] . "<br>";
-        echo "Email: " . $row['email'] . "<br>";
-        echo "Start Date: " . $row['start_date'] . "<br>";
-        echo "Duration: " . $row['duration'] . "<br>";
-        echo "Payment Type: " . $row['payment_type'] . "<br>";
-        echo "Medical Notes: " . $row['medical_notes'] . "<br>";
-        echo "<br>";
+        echo "<tr>";
+        echo "<td>" . $row['id'] . "</td>";
+        echo "<td>" . $row['first_name'] . "</td>";
+        echo "<td>" . $row['last_name'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['start_date'] . "</td>";
+        echo "<td>" . $row['duration'] . "</td>";
+        echo "<td>" . $row['payment_type'] . "</td>";
+        echo "<td>" . $row['medical_notes'] . "</td>";
+        echo "</tr>";
     }
+    echo "</table>";
 } else {
     echo "No data found.";
 }
-
-
 ?>
 
 <html>
 <head>
 <meta charset="utf-8"/>
-
 <title>Hamza Gym</title>
-<meta name="viewport" content="width=divice-width, intial-scale=1.0"/>
-<link rel="stylesheet" type="text/css" href="common.css"/>
+<meta name="viewport" content="width=device-width, intial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="index.css"/>
 </head>
 <body>
 <br><br>
 <button onclick="window.location.href='contactjs.html'">Back to Registration </button>
 </body>
-
 </html>
