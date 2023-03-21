@@ -1,7 +1,7 @@
 variable "instance_size" {
    type = string
    description = "Azure instance size"
-   default = "Standard_B1s"
+   default = "Standard_B2s"
 }
 
 variable "location" {
