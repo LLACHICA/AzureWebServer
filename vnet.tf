@@ -62,7 +62,7 @@ resource "azurerm_network_interface" "webserver_NIC" {
     subnet_id                  = azurerm_subnet.webserver_subnet1.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.webserver_public_ip.id
-    network_security_group_id     = azurerm_network_security_group.allowedports.id
+    #network_security_group_id     = azurerm_network_security_group.allowedports.id
   }
 
   tags = {
