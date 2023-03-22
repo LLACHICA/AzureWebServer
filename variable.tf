@@ -21,13 +21,3 @@ variable "project" {
    description = "project namer"
    default = "Capstone 3384-2"
 }
-
-variable "mysql_administrator_login" {
-  type    = string
-  default = "mariaadmin"
-}
-
-variable "mysql_administrator_login_password" {
-  type    = string
-  default = "Admin123!"
-}
