@@ -20,10 +20,17 @@ header{
 	top:0;
 	left:0;
 
-
-	
+}
+ img.logo{
+	border-radius: 80%;
+	size:50px;
 }
 
+a:hover {
+	color: #FFF;
+	text-decoration: underline;
+	
+  }
 
 nav{ float:right;
 	padding:35px 20px 20px 0;
@@ -76,6 +83,7 @@ footer p, footer h3,footer h5{
 	    color:#FFF;
 		text-align: left;
 		margin-left:2px;
+
 		
 }
 
