@@ -12,7 +12,8 @@ Run terraform apply to deploy the infrastructure stack.
 Once the infrastructure is deployed, run docker-compose up to start the Docker containers.
 You should now be able to access the web server by opening a web browser and navigating to http://<publicIP> or the DNS label on the Terrafom code. 
   
-##Deploying to Azure
+## Deploying to Azure
+ 
 To deploy this infrastructure stack to Azure, you will need to have an Azure account and the Azure CLI installed on your machine.
 
 Run terraform init to initialize the Terraform configuration.
